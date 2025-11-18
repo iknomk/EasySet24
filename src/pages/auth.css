@@ -1,0 +1,195 @@
+.container {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1% 0%;
+}
+
+.icons,
+.apps {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+}
+.icons img {
+  width: 80%;
+  cursor: pointer;
+}
+
+hr {
+  border-top: 1px solid var(--color-neutral-400);
+}
+
+.box {
+  background-color: var(--color-neutral-200);
+  border: 1px solid var(--color-neutral-400);
+  width: 70%;
+  margin: 5% auto;
+  display: flex;
+  padding: 50px;
+  border-radius: 1%;
+  gap: 8%;
+  align-items: center;
+}
+
+.box img {
+  width: 416px;
+  height: 609px;
+  left: 52px;
+  top: calc(50% - 609px/2);
+  border-radius: 8px;
+}
+.box-text {
+  flex: 1;
+  max-width: 392px;
+}
+
+.box-text h2 {
+  color: var(--color-green);
+  margin-bottom: 10px;
+}
+
+.box-text h6 {
+  color: var(--color-black);
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.box-input {
+  border: 1px solid var(--color-neutral-400);
+  width: 100%;
+  max-width: 392px;
+  min-width: 10px;
+  height: 48px;
+  padding: 0 15px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.box-register{
+    display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 12px;
+}
+
+.input-box-login {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 16px;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: none;
+  padding: 0;
+  background: url("@/assets/images/eye.svg") no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.box-text-re {
+  align-items: center;
+  gap: 10px;
+  display: flex;
+}
+
+.box-text-res {
+  margin: 10px 0px;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+}
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  border: 1px;
+  border-color: var(--color-primary-500);
+}
+
+.box-text-re body-S {
+  color: var(--color-green);
+}
+
+.password-wrapper {
+  position: relative;
+}
+.box-text-under {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 134px;
+}
+.box-text-under-reg {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 50px;
+}
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.remember h5 {
+  color: var(--color-green);
+  font-size: 14px;
+  font-weight: normal;
+}
+.forgot {
+  color: var(--color-primary-500);
+}
+.forgot:hover {
+  text-decoration: underline;
+}
+.login {
+  background-color: var(--color-primary-500);
+  color: var(--color-white);
+  width: 100%;
+  height: 48px;
+  border-radius: 4px;
+  border: none;
+}
+.divider {
+  text-align: center;
+  position: relative;
+}
+
+.apps {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.apps img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.p {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+p {
+  margin-bottom: 10px;
+  font-size: 12px;
+}
