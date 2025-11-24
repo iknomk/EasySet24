@@ -269,4 +269,5 @@ button {
   --color-primary-500: #07689F;
   --color-primary-600: #043E5F;
   --color-green: #112211;
+  --border-radius: 8px;
 }

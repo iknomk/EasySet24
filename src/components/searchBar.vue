@@ -35,7 +35,7 @@
         <img src="@/assets/icons/calendar.svg" alt="calendar" class="search-icon" />
         <div class="sub-M">18 Dec 2023 - 23 Dec 2023</div>
       </div>
-      <button class="search-btn-XXL but-XXL">Search</button>
+      <button class="search-btn-XXL but-XXL" >Search</button>
     </div>
   </div>
 
@@ -76,7 +76,7 @@
         <div class="sub-M">18 Dec 2023 - 23 Dec 2023</div>
       </div>
 
-      <button class="search-btn-XXL but-XXL">Search</button>
+      <button class="search-btn-XXL but-XXL" @click="handleHotelSearch">Search</button>
     </div>
   </div>
 
@@ -114,6 +114,9 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const props = defineProps({
   type: {
@@ -125,6 +128,12 @@ const props = defineProps({
 
 const type = computed(() => props.type)
 const state = ref('normal')
+
+const handleHotelSearch = () => {
+  if (type.value === 'hotel-menu') {
+    router.push('/hotel/search')
+  }
+}
 
 const handleHover = (hovering) => {
   if (type.value !== 'hotel') return

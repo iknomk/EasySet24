@@ -1,6 +1,7 @@
 <script setup>
 import AuthButton from '@/components/UI/signButton.vue'
 import { useRouter } from 'vue-router'
+import { ref } from 'vue'
 
 const router = useRouter()
 
@@ -18,6 +19,24 @@ const handleSignIn = () => {
 
 const handleRegister = () => {
   router.push('/register')
+}
+
+const activeMenuItem = ref('Trip')
+
+const handleMenuClick = (menuItem) => {
+    activeMenuItem.value = menuItem
+  const routes = {
+    'Trip': '/',
+    '%Deals': '/deals',
+    'Hotel': '/hotel',
+    'Flight': '/flight',
+    'Apartment': '/apartment',
+    'Camper': '/camper'
+  }
+
+   if (routes[menuItem]) {
+    router.push(routes[menuItem])
+  }
 }
 </script>
 
@@ -96,12 +115,36 @@ const handleRegister = () => {
             </div>
         </div>
         <div v-if="headerType !== 'error'" class="header-menu">
-            <p class="header-menu-item select">Trip</p>
-            <p class="header-menu-item">%Deals</p>
-            <p class="header-menu-item">Hotel</p>
-            <p class="header-menu-item">Flight</p>
-            <p class="header-menu-item">Apartment</p>
-            <p class="header-menu-item">Camper</p>
+            <p 
+                class="header-menu-item"
+                :class="{ 'select': activeMenuItem === 'Trip' }"
+                @click="handleMenuClick('Trip')"
+            >Trip</p>
+            <p 
+                class="header-menu-item"
+                :class="{ 'select': activeMenuItem === '%Deals' }"
+                @click="handleMenuClick('%Deals')"
+            >%Deals</p>
+            <p 
+                class="header-menu-item"
+                :class="{ 'select': activeMenuItem === 'Hotel' }"
+                @click="handleMenuClick('Hotel')"
+            >Hotel</p>
+            <p 
+                class="header-menu-item"
+                :class="{ 'select': activeMenuItem === 'Flight' }"
+                @click="handleMenuClick('Flight')"
+            >Flight</p>
+            <p 
+                class="header-menu-item"
+                :class="{ 'select': activeMenuItem === 'Apartment' }"
+                @click="handleMenuClick('Apartment')"
+            >Apartment</p>
+            <p 
+                class="header-menu-item"
+                :class="{ 'select': activeMenuItem === 'Camper' }"
+                @click="handleMenuClick('Camper')"
+            >Camper</p>
         </div>
     
     </div>
@@ -247,6 +290,7 @@ const handleRegister = () => {
         color: var(--color-neutral-400);
         font-size: 16px;
         font-family: 'Poppins-Medium';
+        cursor: pointer;
     }
     
     .header-menu-item:hover {

@@ -3,31 +3,16 @@ import { ref, computed } from "vue";
 import headerElem from "@/components/header.vue";
 import searchBar from "@/components/searchBar.vue";
 import footerElem from "@/components/footer.vue";
-import HomeCard from "@/components/homeCard.vue";
 import fillButton from "@/components/UI/fillButton.vue";
 import SpecialOfferCard from "@/components/UI/specialOfferCard.vue";
+import offerReviewCard from "@/components/UI/offerReviewCard.vue";
 
-import imgHotelBanner from "@/assets/images/banner-hotel.jpg";
-import imgBeach from "@/assets/images/beach1.jpg";
-import imgCoast from "@/assets/images/flower1.jpg";
-import imgVan from "@/assets/images/sea1.jpg";
-import imgBoat from "@/assets/images/rest1.jpg";
-import imgEiffel from "@/assets/images/paris.jpg";
-import imgDesert from "@/assets/images/sand1.jpg";
 import imgBelgium from "@/assets/images/belgium.png";
 import imgAmsCard from "@/assets/images/amsterdamCard.png";
 import imgNewJer from  "@/assets/images/new-jersey.png";
 import imgNep from "@/assets/images/nepal.png";
 import imgGoth from "@/assets/images/gothenburg.png"
 
-import imgFlight from "@/assets/images/flight.jpg";
-import imgLocation from "@/assets/images/location.jpg";
-import imgHotel from "@/assets/images/hotel.jpg";
-import imgPackage from "@/assets/images/package.jpg";
-import imgSeasonal from "@/assets/images/seasonal.jpg";
-import imgCamps from "@/assets/images/camps.jpg";
-import imgBackpacking from "@/assets/images/backpacking.jpg";
-import imgHostels from "@/assets/images/hostels.jpg";
 import { onBeforeRouteLeave } from "vue-router";
 
 //specialOffers
@@ -37,6 +22,9 @@ import imgLastDeals from "@/assets/images/last-minute.jpg";
 import imgFamily from "@/assets/images/family.jpg";
 import imgBirthday from "@/assets/images/birthday.jpg";
 import imgReferral from "@/assets/images/referralPrograms.jpg"
+
+//offerReviewCards 
+import imgTeacher from "@/assets/images/teacher.png";
 
 const selectedFilter = ref("all");
 
@@ -87,17 +75,6 @@ const specialOffers = ref([
   }
 ]);
 
-const review = ref([
-  { id: 1, name: 'Flight', rating: '8,2', imageUrl: imgFlight},
-  { id: 2, name: 'Location', rating: '8,2', imageUrl: imgLocation},
-  { id: 3, name: 'Hotel', rating: '8,2', imageUrl: imgHotel},
-  { id: 4, name: 'Package', rating: '8,2', imageUrl: imgPackage},
-  { id: 5, name: 'Seasonal', rating: '8,2', imageUrl: imgSeasonal},
-  { id: 6, name: 'Camps', rating: '8,2', imageUrl: imgCamps},
-  { id: 7, name: 'Backpacking', rating: '8,2', imageUrl: imgBackpacking},
-  { id: 8, name: 'Hostels', rating: '8,2', imageUrl: imgHostels}
-]);
-
 const filteredOffers = computed(() => {
   return selectedFilter.value === "all" 
     ? offers 
@@ -111,6 +88,27 @@ const chunkedOffers = computed(() => {
   }
   return chunks;
 });
+
+const testimonials = [
+  {
+    avatar: imgTeacher,
+    flag: new URL('@/assets/icons/flags/france.svg', import.meta.url).href,
+    name: "Teacher Tereco",
+    text: "Returning to this hotel is always a delight – their loyalty program showers us with exclusive discounts and amazing perks!",
+  },
+  {
+    avatar: new URL('@/assets/images/beyu68.png', import.meta.url).href,
+    flag: new URL('@/assets/icons/flags/norway.svg', import.meta.url).href,
+    name: "BEYU68£",
+    text: "Accessing EasySet24 extraordinary special offers makes always our journey even more unforgettable."
+  },
+  {
+    avatar: new URL('@/assets/images/elina13ay.png', import.meta.url).href,
+    flag: new URL('@/assets/icons/flags/canada.svg', import.meta.url).href,
+    name: "Elina13ay",
+    text: "Weekends here are pure bliss with their carefully crafted packages, and the extended stay discounts make relaxation even more enticing.",
+  }
+];
 </script>
 
 <template>
@@ -138,10 +136,11 @@ const chunkedOffers = computed(() => {
           </div>
           <div class="banner-subtitle">Exclusive Hotel Search!</div>
           <div class="offers-tabs">
-            <button class="tab active">Special Offers</button>
-            <button class="tab">Last Search</button>
-            <button class="tab">Trending Destinations</button>
-            <button class="tab">Highest Reviewed</button>
+            <h4 class="tab active">Special Offers</h4>
+            <h6 class="tab ">Last Search</h6>
+            <h6 class="tab">Trending Destinations</h6>
+            <h6 class="tab">Highest Reviewed</h6>
+            <h6 class="tab">Highest Reviewed</h6>
           </div>
         </div>
       </div>
@@ -149,11 +148,11 @@ const chunkedOffers = computed(() => {
       <div class="offers-section">
         <div class="offers-map">
           <SpecialOfferCard 
-            v-for="(offer, index) in specialOffers"
+            v-for="(card, index) in specialOffers"
             :key="index"
             size="medium"
-            :card="offer"
-            :class="`offer-position-${offer.id}`"
+            :card="card"
+            :class="`offer-position-${card.id}`"
           />
         </div>
       </div>
@@ -170,7 +169,7 @@ const chunkedOffers = computed(() => {
             :class="offer.size"
           >
             <img :src="offer.image" alt="offer image" />
-            <button class="discover-btn">Deals Discover →</button>
+            <button class="discover-btn">Loyalty Discounts →</button>
           </div>
         </div>
 
@@ -182,18 +181,56 @@ const chunkedOffers = computed(() => {
             :class="offer.size"
           >
             <img :src="offer.image" alt="offer image" />
-            <button class="discover-btn">Deals Discover →</button>
+            <button class="discover-btn">Family Packages →</button>
           </div>
         </div>
       </div>
 
       <h3>Make a Comprasion </h3>
-      <div class="row-comprasion">
-        <img src="@/assets/images/hello.jpg" alt="hello smile">
-        <img src="@/assets/images/beachComprasion.jpg" alt="beach">
+      <div class="comprasion">
+        <div class="comprasion-container">
+          <img src="@/assets/images/hello.jpg" class="comprasion-img"  alt="hello smile">
+          <h6 class="comprasion-img-text">The past offers with the highest reviews outshine others, standing as a testament to their exceptional quality.</h6>
+        </div>
+        <div class="comprasion-container">
+          <img src="@/assets/images/beachComprasion.jpg" class="comprasion-img" alt="beach">
+          <h6 class="comprasion-img-text">Ring in the new year with iconic moments and unforgettable memories in New York City</h6>
+        </div>
       </div>
     </div>
 
+    <div class="review">
+      <div class="review-cards">
+        <offerReviewCard :cards="testimonials" />
+      </div>
+    </div>
+
+    <div class="bottom-cards">
+      <div class="bottom-card-container">
+        <div class="bottom-card-img-wrapper">
+          <img src="@/assets/images/bottom-card1.jpg" class="bottom-card-img" alt="hello smile">
+        </div>
+        <h4 class="bottom-card-text">Reserve Your hotel, Pursue Your Team</h4>
+      </div>
+      <div class="bottom-card-container">
+        <div class="bottom-card-img-wrapper">
+          <img src="@/assets/images/bottom-card2.jpg" class="bottom-card-img" alt="beach">
+        </div>
+        <h4 class="bottom-card-text">Subscribe Our Newsletter</h4>
+      </div>
+      <div class="bottom-card-container">
+        <div class="bottom-card-img-wrapper">
+          <img src="@/assets/images/bottom-card3.jpg" class="bottom-card-img" alt="hello smile">
+        </div>
+        <h4 class="bottom-card-text">Review Hotel Services Worldwide</h4>
+      </div>
+      <div class="bottom-card-container">
+        <div class="bottom-card-img-wrapper">
+          <img src="@/assets/images/bottom-card4.jpg" class="bottom-card-img" alt="beach">
+        </div>
+        <h4 class="bottom-card-text">Follow the Lates Tour News</h4>
+      </div>
+    </div>
     <footer><footerElem></footerElem></footer>
   </div>
 </template>
@@ -226,19 +263,16 @@ const chunkedOffers = computed(() => {
   background-repeat: no-repeat;
   width: 1440px;
   height: 664px;
-  left: calc(50% - 1440px/2);
-  top: 441px;
   display: flex;
   align-items:flex-end;
- justify-content: center; 
-  padding: 2rem;
+  justify-content: center; 
   margin: 0 auto;
 }
 
 .banner-content {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 20px;
 }
 .banner-title {
 display: flex;
@@ -248,7 +282,7 @@ gap: 16px;
 width: 352px;
 height: 104px;
 margin: auto;
-
+margin-bottom: 230px;
 }
 
 .banner-title-text {
@@ -258,8 +292,9 @@ margin: auto;
 .banner-subtitle {
   font-family: "Poppins-Light";
   font-size: 64px;
+  font-weight: 300;
   color: var(--color-white);
-  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .button-content {
@@ -278,28 +313,50 @@ margin: auto;
 }
 
 .offers-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-end;
+padding: 0px;
+gap: 3px;
+
+width: 1224px;
+height: 64px;
 }
 
 .tab {
-  background: none;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  cursor: pointer;
-  font-weight: 600;
-  color: #333;
-  transition: all 0.3s;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 16px;
+gap: 10px;
+
+margin: 0 auto;
+width: 240px;
+height: 48px;
+
+background: var(--color-neutral-300);
+border-radius: 4px 4px 0px 0px;
+color: var(--color-primary-500);
 }
 
 .tab.active {
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 6px;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 16px;
+gap: 10px;
+
+margin: 0 auto;
+width: 250px;
+height: 64px;
+
+background: var(--color-white);
+border-radius: 4px 4px 0px 0px;
+
+border: 1px solid var(--color-primary-500);
 }
 
 .offers-map {
@@ -388,9 +445,12 @@ border-radius: 0px 0px 8px 8px;
   flex-shrink: 0;
 }
 
+
 .offer-card img {
   width: 100%;
   height: 278px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .row {
@@ -414,26 +474,95 @@ border-radius: 0px 0px 8px 8px;
   position: absolute;
   bottom: 12px;
   left: 12px;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
+  background: var(--color-primary-500);
+  color: var(--color-white);
   border: none;
   padding: 8px 14px;
   border-radius: 8px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
-.discover-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.row-comprasion {
+.comprasion {
   display:flex;
   justify-content: space-between;
 }
-.row-comprasion img {
-  width: 573px;
+
+.comprasion-container, .bottom-card-container {
+  position:relative;
+  display: inline-block;
+}
+
+.comprasion-img {
+  width: 600px;
   height:400px;
+  border-radius: var(--border-radius);
+}
+
+.comprasion-img-text {
+  position: absolute;
+  bottom: 5%;
+  left: 3%;
+  width: 541px;
+  height: 44px;
+  color: var(--color-white);
+}
+
+.review {
+  background-image: url('@/assets/images/beachBanner.jpg');
+  width: 1441px;
+  height: 609px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size:105% auto;
+}
+
+.bottom-cards {
+  padding:0 109px;
+  display: grid;
+  grid-template-columns: repeat(2, 600px);
+  grid-template-rows: 346px 261px;
+  gap: 24px;
+}
+
+.bottom-card-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom-card-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+}
+
+.bottom-card-img-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(354.63deg, rgba(0, 0, 0, 0.7) 18.3%, rgba(0, 0, 0, 0) 95.84%);
+  pointer-events: none;
+}
+
+.bottom-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bottom-card-text {
+  position: absolute;
+  bottom: 2%;
+  left: 3%;
+  width: 541px;
+  height: 44px;
+  color: var(--color-white);
+  z-index: 2; 
 }
 </style>

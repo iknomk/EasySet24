@@ -4,7 +4,7 @@ import RegisterPage from "../pages/RegisterPage.vue";
 import LoginError from "../pages/LoginPageError.vue";
 import LandingPage from "@/pages/LandingPage.vue";
 import LandingPageHotel from "@/pages/LandingPageHotel.vue"
-
+import HotelSearchResult from "@/pages/HotelSearchResult.vue";
 
 const routes = [
   { path: "/login", component: LoginPage },
@@ -12,6 +12,7 @@ const routes = [
   { path: "/login-error", component: LoginError },
   { path: "/", component: LandingPage },
   { path: "/hotel", component: LandingPageHotel },
+  { path: "/hotel/search", component: HotelSearchResult },
 ];
 
 const router = createRouter({
