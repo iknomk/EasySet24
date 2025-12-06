@@ -17,7 +17,6 @@
 
     <div class="title">
       <h5>{{ card.name }}</h5>
-      <!-- Показываем подпись, только если есть -->
       <div v-if="card.subtitle" class="sub-L">{{ card.subtitle }}</div>
     </div>
 
