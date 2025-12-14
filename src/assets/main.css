@@ -98,7 +98,7 @@ h6 {
 .sub-M {
   font-family: "Poppins-Regular";
   font-weight:400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 150%;
 }
 
@@ -255,6 +255,7 @@ input {
 
 button {
   font-family: "Poppins-Medium", sans-serif;
+  cursor: pointer;
 }
 
 :root {
@@ -269,5 +270,7 @@ button {
   --color-primary-500: #07689F;
   --color-primary-600: #043E5F;
   --color-green: #112211;
+  --color-error-light:#e5062e;
+  --color-success:#4c9839;
   --border-radius: 8px;
 }

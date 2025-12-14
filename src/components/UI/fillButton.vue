@@ -4,7 +4,6 @@
     :disabled="disabled"
     @click="$emit('click')"
   >
-    <!-- Если передан слот — показываем его, иначе используем buttonText -->
     <slot>{{ buttonText }}</slot>
   </button>
 </template>

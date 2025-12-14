@@ -6,6 +6,10 @@ import LandingPage from "@/pages/LandingPage.vue";
 import LandingPageHotel from "@/pages/LandingPageHotel.vue"
 import HotelSearchResult from "@/pages/HotelSearchResult.vue";
 import Error404Page from "@/pages/Error404Page.vue";
+import HotelFavouriteList from "@/pages/HotelFavouriteList.vue";
+import FoolyBooked from "@/pages/FoolyBooked.vue";
+import HotelInformationPage1 from "@/pages/HotelInformation/HotelInformationPage1.vue";
+import { compile } from "vue";
 
 const routes = [
   { path: "/login", component: LoginPage },
@@ -15,6 +19,9 @@ const routes = [
   { path: "/hotel", component: LandingPageHotel },
   { path: "/hotel/search", component: HotelSearchResult },
   { path: "/error", component: Error404Page },
+  { path: "/favourites", component: HotelFavouriteList },
+  { path: "/booked", component: FoolyBooked},
+  {path: "/information", component: HotelInformationPage1}
 ];
 
 const router = createRouter({

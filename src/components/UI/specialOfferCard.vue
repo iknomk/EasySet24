@@ -41,7 +41,7 @@ const props = defineProps({
 
   border: 1px solid #E3E3E3;
   border-radius: 4px;
-  position: relative; /* Для позиционирования бейджа */
+  position: relative; 
 
 }
 

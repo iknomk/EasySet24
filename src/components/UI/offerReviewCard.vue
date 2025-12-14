@@ -3,16 +3,20 @@ const props = defineProps({
   cards: {
     type: Array,
     default: () => []
+  },
+  showReadMore: {
+    type: Boolean,
+    default: false
   }
 });
 </script>
 
 <template>
     <div class="cards-wrapper">
-      <div
+      <div class="testimonial-card"
         v-for="(card, index) in cards"
         :key="index"
-        class="testimonial-card"
+      
         >
 
         <div class="avatar-wrapper">
@@ -25,7 +29,11 @@ const props = defineProps({
             <span class="but-XL">{{ card.name }}</span>
           </div>
 
-          <p class="sub-S">{{ card.text }}</p>
+          <div style="display:inline" class="row">
+            <p class="sub-S">{{ card.text }}</p>
+            <span v-if="showReadMore" style="color:var(--color-primary-500)" class="read-more sub-XS">Read More</span>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -45,19 +53,18 @@ const props = defineProps({
   position: relative;
   padding-top: 45px; /* пространство под аватар */
   color: white;
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 60px 32px 32px;
-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 32px 32px;
+  gap: 10px;
 
-width: 252px;
-height: 216px;
+  width: 252px;
+  height: 216px;
 
 
-background: linear-gradient(360deg, rgba(0, 0, 0, 0.5) 20.14%, rgba(0, 0, 0, 0) 92.13%), rgba(0, 0, 0, 0.2);
-border-radius: 8px;
-
+  background: linear-gradient(360deg, rgba(0, 0, 0, 0.5) 20.14%, rgba(0, 0, 0, 0) 92.13%), rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
 }
 
 /* обёртка для правильного позиционирования */

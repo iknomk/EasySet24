@@ -128,12 +128,6 @@ export default {
     gap: 2px;
 }
 
-.img-container-under-sun {
-    display: flex;
-    justify-content: center; /* Выравнивание по центру */
-    align-items: center; /* Выравнивание по вертикали */
-}
-
 .title h5 {
     margin: 0;
     padding: 0;

@@ -1,14 +1,17 @@
 <template>
   <div class="hotel-card">
 
-    <!-- VIP Ribbon -->
+    <!-- VIP tag -->
     <div v-if="vip" class="vip-ribbon">
-      <span>VIP Gifts</span>
+      <img src="@/assets/images/hotelCard/OfferTag.svg" alt="Vip Gifts" />
     </div>
 
     <!-- Left: Image -->
     <div class="image-box">
       <img :src="hotel.image" alt="hotel image" />
+      <div class="img-container-like">
+        <img style="width: 21px; height: 20px; z-index: 10" src="@/assets/icons/like.svg" alt="like" class="like-icon" />
+      </div>
       <div class="img-container-under">
         <div class="img-container-under-sun">
           <slot name="under-content">
@@ -20,10 +23,12 @@
     </div>
 
     <!-- Middle: Info -->
+    <div style=" display:flex; padding: 16px" class="details-container">
     <div class="info">
-      <h3 class="title">{{ hotel.name }}</h3>
+
 
       <div class="row-location">
+        <h5 style="padding-bottom: 4px" class="title">{{ hotel.name }}</h5>
         <div class="row">
             <img src="@/assets/icons/local-two.svg" class="icon"></img>
             <span class="sub-S">{{ hotel.location }}</span>
@@ -50,9 +55,9 @@
       </div>
       
 
-      <div class="experience-rating">
+      <div style="display:flex; flex-direction: column; gap: 4px" class="experience-rating">
         <div class="experience">
-            <div class="sub-S">{{ hotel.experience }}</div>
+            <div style="padding-bottom: 4px" class="sub-S">{{ hotel.experience }}</div>
             <div class="room-type sub-S">{{ hotel.roomType }}</div>
         </div>
 
@@ -67,7 +72,7 @@
 
     <!-- Right: Price -->
     <div class="price">
-        <div class="price-text">
+        <div style="display:flex; gap: 49px; margin-left:auto; align-items: baseline;" class="price-text">
             <div class="discount sub-M" v-if="hotel.discount">
                 {{ hotel.discount }}% Off
             </div>
@@ -90,7 +95,7 @@
         </div>
       </div>
 
-      <div class="btn-container">
+      <div style="display:inline-flex; align-items: center; margin-top: 8px; margin-left: auto" class="btn-container">
         <button class="availability-btn cap-L">
             See Availability 
         </button>
@@ -98,6 +103,7 @@
         <img src="@/assets/icons/right-small.svg" class="icon"></img>
       </div>
       
+    </div>
     </div>
 
   </div>
@@ -120,44 +126,29 @@ defineProps({
 
 <style scoped>
 .icon {
-    width: 16px;
-    height: 16px;
+  width: 16px;
+  height: 16px;    
   filter: brightness(0) saturate(100%);
 }
 
 .hotel-card {
   width: 865px;
   height: 256px;
-  border: 1px solid #e2e2e2;
+  border: 1px solid var(--color-neutral-300);
   border-radius: 8px;
   padding: 8px;
   display: flex;
   gap: 8px;
   position: relative;
-  background: #fff;
-}
-
-/* VIP ribbon */
-.vip-ribbon {
-  position: absolute;
-  top: 0;
-  right: -5px;
-  width: 120px;
-  height: 40px;
-  background: #0b5f9a;
-  color: white;
-  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 600;
+  background: var(--color-white);
 }
 
 .image-box {
   width: 200px;
   height: 240px;
-  border-radius: 8px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+
   overflow: hidden;
   position: relative;
 }
@@ -168,31 +159,13 @@ defineProps({
   object-fit: cover;
 }
 
-.rating-badge {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  background: #000;
-  color: #fff;
-  padding: 3px 6px;
-  border-radius: 4px;
-  font-size: 12px;
-}
-
-/* INFO */
 .info {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  padding: 6px 10px;
-  justify-content: space-between;
+  gap: 28px;
 }
 
-.title {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
 
 .row {
   display: flex;
@@ -210,39 +183,30 @@ defineProps({
   opacity: 0.8;
 }
 
-.rating {
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-.rating-text {
-  font-weight: 700;
-}
-
 .arrow {
   margin-left: 3px;
 }
 
 /* RIGHT PRICE COLUMN */
 .price {
-  width: 160px;
+  width: 302px;
   padding: 6px;
   text-align: right;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 4px;
+  justify-content: flex-end;
+  margin-left:auto;
 }
 
 .discount {
-  font-size: 15px;
-  color: #e60000;
-  font-weight: 600;
+  color: var(--color-error-light);
 }
 
 .price-value {
-  font-size: 28px;
-  font-weight: 800;
-  color: #1a7c3f;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-success);
 }
 
 .taxes {
@@ -251,19 +215,18 @@ defineProps({
 }
 
 .benefits {
-  margin-top: 10px;
+  margin-left: auto;
 }
 
 .green {
-  color: green;
+  color: var(--color-success);
 }
 
 .red {
-  color: red;
+  color: var(--color-error-light);
 }
 
 .availability-btn {
-  margin-top: 8px;
   color: var(--color-primary-500);
   cursor: pointer;
   border: none;
@@ -309,10 +272,49 @@ defineProps({
 }
 
 .row-location{
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-gap: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+}
+
+.vip-ribbon {
+  position: absolute;
+  top: -13px;
+  right: -25px; 
+  z-index: 10; 
+}
+
+.vip-ribbon img {
+  width: 148px;
+  height: 150px;
+  display: block;
+}
+
+.img-container-under-sun {
+  display: flex;
+  flex-direction: row;   
+  align-items: center;  
+  gap: 4px;       
+  flex-wrap: nowrap;  
+}
+
+.like-icon {
+    position: absolute;
+    left: 2.5px;
+    top: 4px;
+    width: 20px;
+}
+
+.img-container-like {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    left: 8px;
+    top: 8px;
+    opacity: 0.7;
+    border-radius: 50px;
+    background-color: var(--color-black);
 }
 </style>
