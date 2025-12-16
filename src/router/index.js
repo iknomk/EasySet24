@@ -9,6 +9,7 @@ import Error404Page from "@/pages/Error404Page.vue";
 import HotelFavouriteList from "@/pages/HotelFavouriteList.vue";
 import FoolyBooked from "@/pages/FoolyBooked.vue";
 import HotelInformationPage1 from "@/pages/HotelInformation/HotelInformationPage1.vue";
+import HotelInformationPage2 from "@/pages/HotelInformation/HotelInformationPage2.vue";
 import { compile } from "vue";
 
 const routes = [
@@ -21,7 +22,8 @@ const routes = [
   { path: "/error", component: Error404Page },
   { path: "/favourites", component: HotelFavouriteList },
   { path: "/booked", component: FoolyBooked},
-  {path: "/information", component: HotelInformationPage1}
+  { path: "/information", component: HotelInformationPage1},
+  { path: "/booking", component: HotelInformationPage2}
 ];
 
 const router = createRouter({

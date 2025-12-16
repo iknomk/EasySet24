@@ -87,7 +87,7 @@
 
             <div class="details__actions">
               <button class="details__like"><img src="@/assets/icons/amenities/like.svg"></button>
-                <fillButton size="small" style="width: 200px;height:48px" class="hero-card__btn">
+                <fillButton size="small" style="width: 200px;height:48px" class="hero-card__btn" @click="goToBooking">
                     <span class="but-XL">
                     Book Now
                     </span>
@@ -179,6 +179,13 @@ import headerElem from "@/components/header.vue";
 import footerElem from "@/components/footer.vue";
 import fillButton from "@/components/UI/fillButton.vue";
 import offerReviewCard from "@/components/UI/offerReviewCard.vue";
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const goToBooking = () => {
+  router.push({ path: '/booking' }); 
+};
 
 const faqItems = [
   {
@@ -244,7 +251,7 @@ const rates = [
 </script>
 
 <style scoped>
-    .landing-page {
+.landing-page {
   background-color: var(--color-neutral-100);
   display: flex;
   flex-direction: column;

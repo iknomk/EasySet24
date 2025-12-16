@@ -74,7 +74,7 @@
             class="btn-container"
             style="display:inline-flex; align-items: center; margin-left: auto"
           >
-            <button class="availability-btn cap-L">
+            <button class="availability-btn cap-L" @click="goToInformation">
               <h6>See Availability</h6>
             </button>
 
@@ -93,6 +93,14 @@ defineProps({
     required: true,
   },
 });
+
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const goToInformation = () => {
+  router.push({ path: '/information' }); 
+};
 </script>
 
 <style scoped>
