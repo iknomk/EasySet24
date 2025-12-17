@@ -273,4 +273,5 @@ button {
   --color-error-light:#e5062e;
   --color-success:#4c9839;
   --border-radius: 8px;
+  --color-success-light: rgba(232, 245, 228, 1);
 }
