@@ -96,7 +96,7 @@
       </div>
 
       <div style="display:inline-flex; align-items: center; margin-top: 8px; margin-left: auto" class="btn-container">
-        <button class="availability-btn cap-L">
+        <button @click="goToPage" class="availability-btn cap-L">
             See Availability 
         </button>
 
@@ -121,6 +121,12 @@ defineProps({
     default: false,
   },
 });
+import { useRouter } from "vue-router";
+
+const router = useRouter()
+const goToPage = () => {
+  router.push('/hotel/booked')
+}
 </script>
 
 

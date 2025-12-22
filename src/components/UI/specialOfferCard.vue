@@ -36,7 +36,7 @@ const props = defineProps({
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 4px;
+  padding: 3px;
   gap: 6px;
 
   border: 1px solid #E3E3E3;

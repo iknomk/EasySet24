@@ -109,7 +109,7 @@ const hotels = [
 
 <template>
   <div class="landing-page">
-    <headerElem headerType="extended" />
+    <headerElem headerType="extended" selectedItem="Hotel" />
 
     <div class="content">
       <h4>Where is your Next Dream Place?</h4>

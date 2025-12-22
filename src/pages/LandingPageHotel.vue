@@ -14,7 +14,13 @@ import imgNep from "@/assets/images/nepal.png";
 import imgGoth from "@/assets/images/gothenburg.png"
 
 import { onBeforeRouteLeave } from "vue-router";
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
+
+const goToPage = () => {
+  router.push('/hotel/search')
+}
 //specialOffers
 import imgLoyalty from "@/assets/images/loyalty.jpg";
 import imgEarlyBooking from "@/assets/images/earlyBooking.jpg";
@@ -113,7 +119,7 @@ const testimonials = [
 
 <template>
   <div class="landing-page">
-    <headerElem headerType="extended" />
+    <headerElem headerType="extended" selectedItem="Hotel"/>
 
     <div class="content">
       <h4>Where is your Next Dream Place?</h4>
@@ -127,7 +133,7 @@ const testimonials = [
         <div class="banner-content">
           <div class="banner-title">
             <h2 class="banner-title-text">Why Choose Us?</h2>
-            <fillButton size="medium" class="but-XL">
+            <fillButton @click="goToPage" size="medium" class="but-XL">
               <span class="button-content">
                 Explore More 
                 <img src="@/assets/icons/right-small.svg" alt="" class="icon">

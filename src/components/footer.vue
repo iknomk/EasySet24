@@ -1,11 +1,18 @@
 <script setup>
 import AuthButton from "@/components/UI/signButton.vue";
 import subscribeBut from "@/components/UI/fillButton.vue";
+const props = defineProps({
+  // 'default' – весь подвал, 'noApp' – без верхнего блока приложения
+  variant: {
+    type: String,
+    default: 'default' 
+  }
+})
 </script>
 
 <template>
     <div>
-        <div class="app-footer">
+        <div v-if="variant === 'default'" class="app-footer">
             <div class="app-footer-left">
                 <h5>Go Further With The EasySet24 App</h5>
                 <div class="sub-M">Enjoy savings on chosen hotels and flights when you book through the EasySet24 website. Additionally, earn One Key Cash for every booking made through the app.</div>
@@ -22,7 +29,7 @@ import subscribeBut from "@/components/UI/fillButton.vue";
                 </div>
             </div>
         </div>
-        <hr class="footer-stroke"></hr>
+        <hr v-if="variant === 'default'" class="footer-stroke"></hr>
         <footer class="footer">
             <div class="footer-top">
             <div class="footer-column">
@@ -145,6 +152,7 @@ import subscribeBut from "@/components/UI/fillButton.vue";
 display: flex;
 justify-content:space-between;
 padding: 60px 109px 24px;
+background-color: var(--color-neutral-100);
 }
 
 .footer-stroke {
@@ -179,6 +187,8 @@ padding: 60px 109px 24px;
 .footer {
   line-height: 1.6;
   width: 100%;
+  background-color: rgba(248, 248, 248, 1);
+
 }
 
 .footer-top {

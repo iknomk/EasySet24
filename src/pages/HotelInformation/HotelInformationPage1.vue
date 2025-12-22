@@ -1,6 +1,6 @@
 <template>
   <div class="landing-page">
-    <headerElem headerType="search" />
+    <headerElem headerType="extended" selectedItem="Hotel"/>
     <div class="content">
       <section class="gallery">
         <div class="gallery__left">

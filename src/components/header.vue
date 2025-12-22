@@ -5,17 +5,6 @@ import AuthButton from '@/components/UI/signButton.vue'
 
 const router = useRouter()
 
-const props = defineProps({
-  headerType: {
-    type: String,
-    default: 'default',
-    validator: value =>
-      ['extended', 'error', 'auth', 'default', 'search'].includes(value),
-  },
-})
-
-const activeMenuItem = ref('Trip')
-
 const handleSignIn = () => {
   router.push('/login')
 }
@@ -23,40 +12,45 @@ const handleSignIn = () => {
 const handleRegister = () => {
   router.push('/register')
 }
-
-const handleMenuClick = menuItem => {
-  activeMenuItem.value = menuItem
-
-  const routes = {
-    Trip: '/',
-    '%Deals': '/deals',
-    Hotel: '/hotel',
-    Flight: '/flight',
-    Apartment: '/apartment',
-    Camper: '/camper',
-  }
-
-  if (routes[menuItem]) {
-    router.push(routes[menuItem])
-  }
+const goToPage =() => {
+  router.push('/')
 }
+
+defineProps({
+  headerType: {
+    type: String,
+    default: 'default',
+    validator: (value) => ['extended', 'default', 'error', 'auth', 'search'].includes(value)
+  },
+  selectedItem: {
+    type: String,
+    validator: (value) => ['Trip', 'Deals', 'Hotel', 'Flight', 'Apartment', 'Camper'].includes(value)
+  }
+})
 </script>
 
 <template>
-  <div class="header" :class="{ 'search-header': headerType === 'search' }">
-    <div
-      class="header-main"
-      :class="{
-        auth: headerType === 'auth',
-        search: headerType === 'search',
-        extended: headerType === 'extended',
-      }"
-    >
+  <div
+  class="header"
+  :class="{
+    'search-header': headerType === 'search',
+  'header--default-border': ['default', 'auth'].includes(headerType)
+
+  }"
+>
+  <div
+    class="header-main"
+    :class="{
+      auth: headerType === 'auth',
+      search: headerType === 'search',
+      extended: headerType === 'extended'
+    }"
+  >
       <!-- Левая часть: логотип + поиск -->
       <div class="header-main-part">
         <!-- Логотип -->
         <div class="main-part-logo">
-          <div class="logo-icon">
+          <div @click="goToPage" class="logo-icon">
             <img src="@/assets/images/Logo.png" alt="logo" />
           </div>
         </div>
@@ -165,49 +159,37 @@ const handleMenuClick = menuItem => {
     </div>
 
     <!-- Нижнее меню (кроме error) -->
-    <div v-if="headerType !== 'error'" class="header-menu">
-      <p
-        class="header-menu-item"
-        :class="{ select: activeMenuItem === 'Trip' }"
-        @click="handleMenuClick('Trip')"
-      >
-        Trip
-      </p>
-      <p
-        class="header-menu-item"
-        :class="{ select: activeMenuItem === '%Deals' }"
-        @click="handleMenuClick('%Deals')"
-      >
-        %Deals
-      </p>
-      <p
-        class="header-menu-item"
-        :class="{ select: activeMenuItem === 'Hotel' }"
-        @click="handleMenuClick('Hotel')"
-      >
-        Hotel
-      </p>
-      <p
-        class="header-menu-item"
-        :class="{ select: activeMenuItem === 'Flight' }"
-        @click="handleMenuClick('Flight')"
-      >
-        Flight
-      </p>
-      <p
-        class="header-menu-item"
-        :class="{ select: activeMenuItem === 'Apartment' }"
-        @click="handleMenuClick('Apartment')"
-      >
-        Apartment
-      </p>
-      <p
-        class="header-menu-item"
-        :class="{ select: activeMenuItem === 'Camper' }"
-        @click="handleMenuClick('Camper')"
-      >
-        Camper
-      </p>
+    <div v-if="headerType !== 'error'  && headerType !== 'default' && headerType !== 'auth'" class="header-menu">
+      <a
+          href="/"
+          class="header-menu-item"
+          :class="{ select: selectedItem === 'Trip' }"
+        >Trip</a>
+        <a
+          href="/error"
+          class="header-menu-item"
+          :class="{ select: selectedItem === 'Deals' }"
+        >%Deals</a>
+        <a
+          href="/hotel"
+          class="header-menu-item"
+          :class="{ select: selectedItem === 'Hotel' }"
+        >Hotel</a>
+        <a
+          href="/flight/search"
+          class="header-menu-item"
+          :class="{ select: selectedItem === 'Flight' }"
+        >Flight</a>
+        <a
+          href="/error"
+          class="header-menu-item"
+          :class="{ select: selectedItem === 'Apartment' }"
+        >Apartment</a>
+        <a
+          href="/error"
+          class="header-menu-item"
+          :class="{ select: selectedItem === 'Camper' }"
+        >Camper</a>
     </div>
   </div>
 </template>
@@ -234,7 +216,7 @@ const handleMenuClick = menuItem => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1% 0;
+  padding: 32px 0;
   width: 85%;
   margin: 0 auto;
 }
@@ -474,6 +456,7 @@ const handleMenuClick = menuItem => {
   font-family: 'Poppins-Medium';
   cursor: pointer;
   transition: 0.4s;
+  text-decoration:none;
 }
 
 .header-menu-item:hover {
@@ -495,5 +478,15 @@ const handleMenuClick = menuItem => {
   background-color: #a6a6a6;
   border: none;
   margin: 0;
+}
+.header--default-border {
+  border-bottom: 1px solid var(--color-neutral-300);
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;          /* расстояние между кнопками */
+  margin-left: 16px; /* отступ от иконок справа, подбери по макету */
 }
 </style>
